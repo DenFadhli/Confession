@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO & Privacy -->
+  <title>Untukmu ✦</title>
+  <meta name="description" content="Sebuah pesan kecil yang ingin aku sampaikan untukmu." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+
+  <!-- Open Graph (opsional, bisa dikustomisasi) -->
+  <meta property="og:title"       content="Ada yang ingin aku sampaikan..." />
+  <meta property="og:description" content="Buka dan baca pesan ini untukmu." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Preconnect Google Fonts (loaded in CSS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════
+       ① LAYAR PEMBUKA
+  ═════════════════════════════════════════════════════════ -->
+  <section id="screen-opening" class="screen" role="main" aria-label="Layar pembuka">
+    <!-- Floating petals background -->
+    <div class="petals-container" id="petals-container" aria-hidden="true"></div>
+
+    <!-- Decorative ornaments -->
+    <span class="ornament ornament-tl" aria-hidden="true">♡</span>
+    <span class="ornament ornament-br" aria-hidden="true">♡</span>
+
+    <!-- Content -->
+    <div class="opening-heart" aria-hidden="true">💌</div>
+    <h1 class="opening-title" id="opening-title">Untukmu</h1>
+    <p  class="opening-subtitle" id="opening-subtitle">Ada sesuatu yang ingin aku sampaikan...</p>
+
+    <button class="btn btn-primary" id="btn-start" aria-label="Mulai membaca pesan">
+      Mulai ✦
+    </button>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       ② LAYAR CERITA / STORY CARDS
+  ═════════════════════════════════════════════════════════ -->
+  <section id="screen-story" class="screen" aria-label="Cerita">
+    <div class="story-card card" role="region" aria-live="polite">
+      <span class="story-emoji" id="story-emoji" aria-hidden="true">🌱</span>
+      <h2  class="story-title"  id="story-title">Pertama kali kita ngobrol</h2>
+      <p   class="story-text"   id="story-text">Aku ingat betul waktu itu...</p>
+      <p   class="story-counter text-soft mt-2" id="story-counter" aria-label="Kartu 1 dari 4">1 / 4</p>
+    </div>
+
+    <div class="progress-dots" id="story-dots" aria-hidden="true"></div>
+
+    <nav class="nav-row" aria-label="Navigasi cerita">
+      <button class="btn btn-secondary" id="btn-story-prev" aria-label="Kembali">
+        ← Kembali
+      </button>
+      <button class="btn btn-primary" id="btn-story-next" aria-label="Berikutnya">
+        Berikutnya →
+      </button>
+    </nav>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       ③ LAYAR ALASAN SPESIAL
+  ═════════════════════════════════════════════════════════ -->
+  <section id="screen-reasons" class="screen" aria-label="Alasan spesial">
+    <div style="max-width:480px; width:100%; text-align:center;">
+      <p class="reasons-intro" aria-hidden="true">♡ ♡ ♡</p>
+      <h2>Hal-hal yang aku kagumi darimu</h2>
+      <p class="text-soft mt-1">Ini bukan gombal. Ini nyata.</p>
+    </div>
+
+    <ul class="reasons-list" id="reasons-list" aria-label="Daftar alasan spesial">
+      <!-- Diisi oleh JavaScript -->
+    </ul>
+
+    <nav class="nav-row" aria-label="Navigasi alasan">
+      <button class="btn btn-secondary" id="btn-reasons-back" aria-label="Kembali ke cerita">
+        ← Kembali
+      </button>
+      <button class="btn btn-primary"   id="btn-reasons-next" aria-label="Lanjut">
+        Lanjut ✦
+      </button>
+    </nav>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       ④ LAYAR GALERI FOTO (tampil hanya jika ada foto)
+  ═════════════════════════════════════════════════════════ -->
+  <section id="screen-gallery" class="screen" aria-label="Galeri kenangan">
+    <div style="max-width:480px; width:100%; text-align:center;">
+      <h2>Kenangan yang aku simpan</h2>
+      <p class="text-soft mt-1">Beberapa momen yang selalu aku ingat.</p>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid" role="list" aria-label="Foto kenangan">
+      <!-- Diisi oleh JavaScript -->
+    </div>
+
+    <nav class="nav-row" aria-label="Navigasi galeri">
+      <button class="btn btn-secondary" id="btn-gallery-back" aria-label="Kembali">
+        ← Kembali
+      </button>
+      <button class="btn btn-primary"   id="btn-gallery-next" aria-label="Lanjut ke pertanyaan">
+        Lanjut ✦
+      </button>
+    </nav>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Tampilan penuh foto" tabindex="-1">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Tutup">✕</button>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       ⑤ LAYAR PERTANYAAN UTAMA
+  ═════════════════════════════════════════════════════════ -->
+  <section id="screen-question" class="screen" aria-label="Pertanyaan utama">
+    <div class="card" style="max-width:420px;">
+      <div class="question-hearts" aria-hidden="true">💗</div>
+      <h2 class="question-text" id="question-text">Maukah kamu jadi pacarku?</h2>
+
+      <!-- Semua tombol jawaban HARUS sama-sama mudah ditekan (anti dark-pattern) -->
+      <div class="answer-buttons" role="group" aria-label="Pilihan jawaban">
+        <button class="btn btn-yes"  id="btn-answer-yes"  aria-label="Jawab: Mau">Mau 💗</button>
+        <button class="btn btn-wait" id="btn-answer-wait" aria-label="Jawab: Butuh waktu">Aku butuh waktu 🤍</button>
+        <button class="btn btn-no"   id="btn-answer-no"   aria-label="Jawab: Belum bisa">Maaf, belum bisa 🙏</button>
+      </div>
+    </div>
+
+    <button class="btn btn-ghost mt-2" id="btn-q-back" aria-label="Kembali">
+      ← Kembali
+    </button>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       ⑥-A LAYAR RESPONS: YA / MAU
+  ═════════════════════════════════════════════════════════ -->
+  <section id="screen-yes" class="screen response-screen" aria-label="Jawaban: Mau" aria-live="assertive">
+    <span class="ornament ornament-tl" aria-hidden="true">♡</span>
+    <span class="ornament ornament-br" aria-hidden="true">♡</span>
+
+    <div class="card" style="max-width:420px;">
+      <span class="response-emoji" id="yes-emoji" aria-hidden="true">🎉</span>
+      <h2  class="response-title"  id="yes-title">Aku Sangat Bahagia!</h2>
+      <p   class="response-message" id="yes-message">
+        Terima kasih. Kamu baru saja membuat hariku menjadi yang terbaik.
+      </p>
+
+      <a  class="wa-btn" id="yes-wa" href="#" target="_blank" rel="noopener noreferrer"
+          aria-label="Lanjut chat via WhatsApp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15
+            -.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075
+            -.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059
+            -.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497
+            .099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207
+            -.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01
+            -.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479
+            0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487
+            .709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118
+            .571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413
+            -.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.553 4.118 1.522 5.851L0 24l6.335-1.652
+            A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818
+            a9.807 9.807 0 0 1-5.012-1.378l-.36-.214-3.732.978.995-3.63-.234-.374
+            A9.773 9.773 0 0 1 2.182 12c0-5.42 4.398-9.818 9.818-9.818
+            5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/>
+        </svg>
+        Chat via WhatsApp
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       ⑥-B LAYAR RESPONS: BUTUH WAKTU
+  ═════════════════════════════════════════════════════════ -->
+  <section id="screen-wait" class="screen response-screen" aria-label="Jawaban: Butuh waktu" aria-live="assertive">
+    <div class="card" style="max-width:420px;">
+      <span class="response-emoji" id="wait-emoji" aria-hidden="true">🌸</span>
+      <h2  class="response-title"  id="wait-title">Tentu, Ambil Waktumu</h2>
+      <p   class="response-message" id="wait-message">
+        Tidak apa-apa sama sekali. Aku menghargai kejujuranmu.
+      </p>
+
+      <a  class="wa-btn" id="wait-wa" href="#" target="_blank" rel="noopener noreferrer"
+          aria-label="Lanjut chat via WhatsApp" style="background:#7c6aaa;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15
+            -.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075
+            -.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059
+            -.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497
+            .099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207
+            -.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01
+            -.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479
+            0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487
+            .709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118
+            .571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413
+            -.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.553 4.118 1.522 5.851L0 24l6.335-1.652
+            A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818
+            a9.807 9.807 0 0 1-5.012-1.378l-.36-.214-3.732.978.995-3.63-.234-.374
+            A9.773 9.773 0 0 1 2.182 12c0-5.42 4.398-9.818 9.818-9.818
+            5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/>
+        </svg>
+        Chat via WhatsApp
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       ⑥-C LAYAR RESPONS: BELUM BISA
+  ═════════════════════════════════════════════════════════ -->
+  <section id="screen-no" class="screen response-screen" aria-label="Jawaban: Belum bisa" aria-live="assertive">
+    <div class="card" style="max-width:420px;">
+      <span class="response-emoji" id="no-emoji" aria-hidden="true">🌿</span>
+      <h2  class="response-title"  id="no-title">Terima Kasih Sudah Jujur</h2>
+      <p   class="response-message" id="no-message">
+        Terima kasih sudah membaca sampai akhir dan sudah jujur. Aku menghargainya sepenuh hati.
+      </p>
+
+      <a  class="wa-btn" id="no-wa" href="#" target="_blank" rel="noopener noreferrer"
+          aria-label="Chat via WhatsApp" style="background:#4a7ab5;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15
+            -.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075
+            -.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059
+            -.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497
+            .099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207
+            -.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01
+            -.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479
+            0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487
+            .709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118
+            .571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413
+            -.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.553 4.118 1.522 5.851L0 24l6.335-1.652
+            A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818
+            a9.807 9.807 0 0 1-5.012-1.378l-.36-.214-3.732.978.995-3.63-.234-.374
+            A9.773 9.773 0 0 1 2.182 12c0-5.42 4.398-9.818 9.818-9.818
+            5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/>
+        </svg>
+        Chat via WhatsApp
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       GLOBAL ELEMENTS
+  ═════════════════════════════════════════════════════════ -->
+
+  <!-- Confetti canvas (answer: yes) -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- Floating Music Widget (YouTube / MP3) -->
+  <aside id="music-widget" class="music-widget" aria-label="Pemutar musik latar">
+    <div class="music-widget-header">
+      <span class="music-widget-title" id="music-widget-title">Musik Latar 🎵</span>
+      <button class="music-widget-close" id="music-widget-close" aria-label="Sembunyikan pemutar musik">✕</button>
+    </div>
+    <div class="music-widget-body" id="music-widget-body">
+      <div id="yt-player"></div>
+    </div>
+  </aside>
+
+  <!-- Music toggle button (shown only if music is enabled in config) -->
+  <button id="music-toggle" aria-label="Putar musik" title="Musik latar" aria-pressed="false"></button>
+
+  <!-- JavaScript (ES Module) -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
