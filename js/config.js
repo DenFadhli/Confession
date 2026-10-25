@@ -117,7 +117,7 @@ export const CONFIG = {
   // Atau gunakan file lokal: "assets/audio/lagu.mp3"
   music: {
     enabled: true, // Ubah ke true untuk mengaktifkan tombol musik
-    src: "https://youtu.be/GxldQ9eX2wo?si=JS7f9wldaExnmyxW", // Canon in D Relaxing Piano
+    src: "assets/audio/song.mp3", // Stephen Sanchez - Until I Found You
     label: "Song for You 🎵",
     volume: 50, // Volume: 0 sampai 100
     autoPlayOnStart: true, // Jika true, otomatis putar saat tombol "Mulai ✦" diklik

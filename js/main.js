@@ -15,6 +15,7 @@ let audioEl = null;
 let ytPlayer = null;
 let isYouTube = false;
 let ytReady = false;
+let pendingPlay = false;
 let isPlaying = false;
 let openTime = Date.now();
 
@@ -317,8 +318,10 @@ function playMusic() {
       try {
         ytPlayer.playVideo();
       } catch (e) {
-        console.warn('YouTube playVideo error:', e);
+        console.warn('YouTube playVideo error on iOS:', e);
       }
+    } else {
+      pendingPlay = true;
     }
   } else if (audioEl) {
     audioEl.play().then(() => {
@@ -328,7 +331,9 @@ function playMusic() {
         btn.classList.add('playing');
         btn.setAttribute('aria-label', 'Jeda musik');
       }
-    }).catch(() => {});
+    }).catch((err) => {
+      console.warn('Audio play prevented on iOS (requires user interaction):', err);
+    });
   }
 }
 
@@ -401,12 +406,18 @@ function initMusic() {
           playlist: ytId,
           modestbranding: 1,
           rel: 0,
+          playsinline: 1, // Crucial for iOS WebKit/Safari
+          enablejsapi: 1,
+          origin: window.location.origin,
         },
         events: {
           onReady: (event) => {
             ytReady = true;
             const vol = cfg.volume !== undefined ? cfg.volume : 50;
             try { event.target.setVolume(vol); } catch (e) {}
+            if (pendingPlay && !isPlaying) {
+              try { event.target.playVideo(); } catch (e) {}
+            }
           },
           onStateChange: (event) => {
             // YT.PlayerState: PLAYING = 1, PAUSED = 2, ENDED = 0
@@ -427,6 +438,10 @@ function initMusic() {
           },
           onError: (err) => {
             console.warn('YouTube Player notice (code):', err.data);
+            const errNotice = $('#yt-error-message');
+            if (errNotice) {
+              errNotice.style.display = 'flex';
+            }
           }
         }
       });
@@ -440,11 +455,17 @@ function initMusic() {
       toggleMusic();
     });
   } else {
-    // HTML5 Audio fallback for local MP3 files
+    // HTML5 Audio for local MP3 files & direct audio links (100% iOS Compatible)
     if (widget) widget.style.display = 'none';
-    audioEl = new Audio(cfg.src);
+    audioEl = $('#bg-audio');
+    if (!audioEl) {
+      audioEl = new Audio();
+    }
+    audioEl.src = cfg.src;
     audioEl.loop = true;
-    audioEl.volume = ((cfg.volume !== undefined ? cfg.volume : 50) / 100);
+    try {
+      audioEl.volume = ((cfg.volume !== undefined ? cfg.volume : 50) / 100);
+    } catch (e) {}
 
     btn.addEventListener('click', toggleMusic);
   }

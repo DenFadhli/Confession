@@ -668,6 +668,35 @@ p  { font-size: clamp(0.9rem, 2.5vw, 1rem); color: var(--text-mid); }
   display: block;
 }
 
+.yt-error-notice {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #fff0f3;
+  color: var(--maroon);
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.45;
+  z-index: 10;
+}
+
+.yt-error-hint {
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--text-mid);
+}
+
+.yt-error-notice code {
+  background: rgba(140, 47, 57, 0.1);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
 /* ── Decorative ornaments ─────────────────────────────────── */
 .ornament {
   position: absolute;
