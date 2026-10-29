@@ -73,17 +73,17 @@ export const CONFIG = {
   ],
 
   // ── Pertanyaan Utama ──────────────────────────────────────
-  question: "Lily, would you be my girlfriend?",
+  question: "Lily, may I be your boyfriend?",
 
   // ── Jawaban ───────────────────────────────────────────────
   answers: {
     yes: {
-      label: "Mau 💗",
+      label: "IYA, MAUU! 💗",
       title: "I am Very Happy! 🎉",
       message:
         "Terima kasih, Lily. Kamu baru saja membuat hari ini jadi hari terbaik yang pernah aku rasakan.",
       whatsappText:
-        "Haii, aku baru buka link-nya... dan jawabanku mau 💗",
+        "Haii, aku baru buka link-nya... dan jawabanku MAU! 💗",
     },
     wait: {
       label: "Aku butuh waktu 🤍",
@@ -94,11 +94,11 @@ export const CONFIG = {
         "Haii, aku baru buka link-nya. Boleh ngobrol lagi nanti?",
     },
     no: {
-      label: "Maaf, belum bisa 🙏",
+      label: "Maaf, belum bisa... 🙏",
       title: "Thank You for Being Honest",
       message:
         "Terima kasih sudah membaca sampai akhir dan sudah jujur. Aku menghargainya sepenuh hati, semoga kita tetap baik-baik saja.",
-      whatsappText: "Haii, aku sudah buka link-nya. Terima kasih ya.",
+      whatsappText: "Haii, aku sudah buka link-nya. Terima kasih ya atas waktunya selama ini.",
     },
   },
 
